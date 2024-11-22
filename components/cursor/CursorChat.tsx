@@ -31,35 +31,6 @@ const CursorChat = ({
     }
   };
 
-  useEffect(() => {
-    const onKeyUp = (e: KeyboardEvent) => {
-      if (e.key === "/") {
-        setCursorState({
-          mode: CursorMode.Chat,
-          previousMessage: null,
-          message: "",
-        });
-      } else if (e.key === "Escape") {
-        updateMyPresence({ message: "" });
-        setCursorState({ mode: CursorMode.Hidden });
-      }
-    };
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "/") {
-        e.preventDefault();
-      }
-    };
-
-    window.addEventListener("keyup", onKeyUp);
-    window.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      window.addEventListener("keyup", onKeyUp);
-      window.addEventListener("keydown", onKeyDown);
-    };
-  }, [updateMyPresence]);
-
   return (
     <div
       className="absolute top-0 left-0"
